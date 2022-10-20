@@ -1,6 +1,6 @@
 name: new_version_check
 description: Get the current version of the application locally and in stores. And nothing superfluous
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/Skrip0v/new_version_check
 
 environment:
@@ -25,6 +25,9 @@ dev_dependencies:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
 flutter: null
+platforms:
+  android:
+  ios:
 
 # To add assets to your package, add an assets section, like this:
 # assets:
