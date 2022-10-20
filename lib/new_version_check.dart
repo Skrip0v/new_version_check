@@ -61,7 +61,7 @@ class VersionStatus {
   });
 }
 
-class NewVersionPlus {
+class NewVersionCheck {
   /// An optional value that can override the default packageName when
   /// attempting to reach the Apple App Store. This is useful if your app has
   /// a different package name in the App Store.
@@ -83,7 +83,7 @@ class NewVersionPlus {
   /// before publishng a new version.
   final String? forceAppVersion;
 
-  NewVersionPlus({
+  NewVersionCheck({
     this.androidId,
     this.iOSId,
     this.iOSAppStoreCountry,

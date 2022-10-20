@@ -28,7 +28,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   Future<VersionStatus?> initVersion() async {
-    var newVersionPlus = NewVersionPlus(iOSAppStoreCountry: 'ru');
+    var newVersionPlus = NewVersionCheck(iOSAppStoreCountry: 'ru');
     final status = await newVersionPlus.getVersionStatus();
     return status;
   }
