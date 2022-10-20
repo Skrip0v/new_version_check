@@ -147,7 +147,6 @@ class NewVersionCheck {
     final uri = Uri.https(
         "play.google.com", "/store/apps/details", {"id": id, "hl": "en"});
     final response = await Dio().getUri(uri);
-    log(response.data.toString());
     if (response.statusCode != 200) {
       debugPrint('Can\'t find an app in the Play Store with the id: $id');
       return null;
