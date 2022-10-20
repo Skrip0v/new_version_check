@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:new_version_check/new_version_check.dart';
 
@@ -42,19 +40,18 @@ class _HomePageState extends State<HomePage> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               if (snapshot.hasError) {
-                return Center(
-                  child: Text(
-                    '${snapshot.error} occurred',
-                    style: const TextStyle(fontSize: 18),
-                  ),
+                return const Center(
+                  child: Text('Error'),
                 );
               } else if (snapshot.hasData) {
-                final data = snapshot.data as String;
-                return Center(
-                  child: Text(
-                    '$data',
-                    style: TextStyle(fontSize: 18),
-                  ),
+                VersionStatus? data = snapshot.data as VersionStatus;
+                return Column(
+                  children: [
+                    Text('Can update: ${data.canUpdate}'),
+                    Text('Local version: ${data.localVersion}'),
+                    Text('Store version: ${data.storeVersion}'),
+                    Text('App store link: ${data.appStoreLink}'),
+                  ],
                 );
               }
             }

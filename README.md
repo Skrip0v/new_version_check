@@ -1,39 +1,32 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
+# new_version_check
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Flutter plugin to get the current version of the app locally and in stores. And nothing superfluous
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+    1) Get a version in the AppStore
+    2) Get a version in the Playmarket
+    3) Get the current app version
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+```dart
+import 'package:new_version_check/new_version_check.dart';
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
 ```dart
-const like = 'sample';
+var newVersionPlus = NewVersionCheck(iOSAppStoreCountry: 'ru');
+var status = await newVersionPlus.getVersionStatus();
+
+String? appStoreLink = status?.appStoreLink;
+String? localVersion = status?.localVersion;
+String? storeVersion = status?.storeVersion;
+bool? canUpdate = status?.canUpdate;
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+For this package to work, you must have your apps published to the Appstore or Playmarket
