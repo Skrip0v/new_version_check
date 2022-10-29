@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:html/parser.dart' show parse;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 
 /// Information about the app's current version, and the most recent version
 /// available in the Apple App Store or Google Play Store.
@@ -120,12 +120,12 @@ class NewVersionCheck {
       parameters.addAll({"country": iOSAppStoreCountry!});
     }
     var uri = Uri.https("itunes.apple.com", "/lookup", parameters);
-    final response = await Dio().getUri(uri);
+    final response = await http.get(uri);
     if (response.statusCode != 200) {
       debugPrint('Failed to query iOS App Store');
       return null;
     }
-    final jsonObj = json.decode(response.data);
+    final jsonObj = json.decode(response.body);
     final List results = jsonObj['results'];
     if (results.isEmpty) {
       debugPrint('Can\'t find an app in the App Store with the id: $id');
@@ -146,12 +146,12 @@ class NewVersionCheck {
     final id = androidId ?? packageInfo.packageName;
     final uri = Uri.https(
         "play.google.com", "/store/apps/details", {"id": id, "hl": "en"});
-    final response = await Dio().getUri(uri);
+    final response = await http.get(uri);
     if (response.statusCode != 200) {
       debugPrint('Can\'t find an app in the Play Store with the id: $id');
       return null;
     }
-    final document = parse(response.data);
+    final document = parse(response.body);
 
     String storeVersion = '0.0.0';
     String? releaseNotes;
